@@ -141,12 +141,12 @@ class StarportPadsOverlay():
     id_list_station: list = []
     config_attr_set = {
         "overlay", "backward", "radius", "center_x", "center_y", "ms_delay",
-        "color_stn", "color_pad", "ttl", "cur_pad", "starport_canvas",
+        "color_stn", "thickness_stn", "color_pad", "ttl", "cur_pad", "starport_canvas",
     }
 
     def __init__(
             self, overlay, backward, radius, center_x, center_y, screen_w, screen_h,
-            ms_delay, color_stn, color_pad, ttl, cur_pad, starport_canvas,
+            ms_delay, color_stn, thickness_stn, color_pad, ttl, cur_pad, starport_canvas,
     ):
         self.overlay = overlay
         self.backward = backward
@@ -160,6 +160,7 @@ class StarportPadsOverlay():
             self.aspect_x = 1.0
         self.ms_delay = ms_delay
         self.color_stn = color_stn
+        self.thickness_stn = thickness_stn
         self.color_pad = color_pad
         self.ttl = ttl
         self.cur_pad = cur_pad

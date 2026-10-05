@@ -131,12 +131,12 @@ class FleetCarrierPadsOverlay():
     id_list_station: list = []
     config_attr_set = {
         "overlay", "backward", "radius", "center_x", "center_y", "ms_delay",
-        "color_stn", "color_pad", "ttl", "cur_pad", "fleetcarrier_canvas", "carrier_type",
+        "color_stn", "thickness_stn", "color_pad", "ttl", "cur_pad", "fleetcarrier_canvas", "carrier_type",
     }
 
     def __init__(
             self, overlay, backward, radius, center_x, center_y, screen_w, screen_h,
-            ms_delay, color_stn, color_pad, ttl, cur_pad, fleetcarrier_canvas,
+            ms_delay, color_stn, thickness_stn, color_pad, ttl, cur_pad, fleetcarrier_canvas,
             carrier_type=CarrierType.FleetCarrier,
     ):
         self.overlay = overlay
@@ -154,6 +154,7 @@ class FleetCarrierPadsOverlay():
             self.max_y = screen_h
         self.ms_delay = ms_delay
         self.color_stn = color_stn
+        self.thickness_stn = thickness_stn
         self.color_pad = color_pad
         self.ttl = ttl
         self.cur_pad = cur_pad
@@ -254,6 +255,7 @@ class FleetCarrierPadsOverlay():
                 "ttl": self.ttl,
                 "x": x, "y": y,
                 "w": w, "h": h,
+                "thickness": self.thickness_stn,
             }
             self.id_list_station.append(msg["id"])
             self.overlay.send_raw(msg, delay=self.ms_delay)
@@ -273,11 +275,12 @@ class FleetCarrierPadsOverlay():
         msg = {
             "id": f"{self.id_prefix}pad-{pad}",
             "shape": "rect",
-            "color": self.color_pad,
+            "color": self.color_stn,
             "fill": self.color_pad,
             "ttl": self.ttl,
             "x": x, "y": y,
             "w": w, "h": h,
+            "thickness": self.thickness_stn,
         }
         self.id_list_pad.append(msg["id"])
         self.overlay.send_raw(msg, delay=self.ms_delay)
